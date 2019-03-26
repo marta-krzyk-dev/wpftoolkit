@@ -38,7 +38,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
     protected override Size MeasureOverride( Size availableSize )
     {
       Size desideredSize = new Size();
-      foreach( FrameworkElement child in Children )
+      foreach( FrameworkElement child in InternalChildren )
       {
         child.Measure( new Size( double.PositiveInfinity, double.PositiveInfinity ) );
         desideredSize.Width += child.DesiredSize.Width;
@@ -51,7 +51,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
 
     protected override Size ArrangeOverride( Size finalSize )
     {
-      var visibleChildren = Children.Cast<UIElement>().Where( ch => ch.Visibility != System.Windows.Visibility.Collapsed );
+      var visibleChildren = InternalChildren.Cast<UIElement>().Where( ch => ch.Visibility != System.Windows.Visibility.Collapsed );
       var offset = 0.0;
       var skipAllOthers = false;
       foreach( TabItem doc in visibleChildren )
